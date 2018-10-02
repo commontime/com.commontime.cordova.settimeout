@@ -14,7 +14,7 @@ exports.setTimeout = function (success, time) {
         }
     }, function(e){
         console.error(e);
-    }, 'setTimeout', 'setTimeout', [time]);
+    }, 'setTimeout', 'setTimeout', [time?time:0]);
     return id;
 };
 
