@@ -4,11 +4,12 @@ var timers = {};
 var count = 1;
 
 exports.setTimeout = function (success, time) {
+    var that = this;
     var id = count++;
     timers[id] = success;
     exec(function() {
         if(timers[id]) {
-            success();
+            success.call(that);
             delete timers[id];
         }
     }, function(e){console.error(e);}, 'setTimeout', 'setTimeout', [time]);
