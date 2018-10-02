@@ -44,6 +44,8 @@ exports.clearInterval = function (id) {
 document.addEventListener("deviceready", function() {
     window.setTimeout = cordova.plugins.setTimeout.setTimeout;
     window.clearTimeout = cordova.plugins.setTimeout.clearTimeout;
+    window.setInterval = cordova.plugins.setTimeout.setInterval;
+    window.clearInterval = cordova.plugins.setTimeout.clearInterval;
 }, false);
 
 
