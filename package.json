@@ -1,0 +1,24 @@
+{
+  "name": "com.commontime.cordova.settimeout",
+  "version": "0.0.1",
+  "description": "Commontime cordova insomnia plugin.",
+  "cordova": {
+    "id": "com.commontime.cordova.settimeout",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "commontime",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Commontime Ltd",
+  "license": "MIT"
+}

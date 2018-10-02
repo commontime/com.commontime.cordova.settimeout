@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.commontime.cordova.settimeout" version="0.0.1" 
+    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>setTimeout</name>
+    <js-module name="setTimeout" src="www/setTimeout.js">
+        <clobbers target="cordova.plugins.setTimeout" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="setTimeout">
+                <param name="android-package" value="com.commontime.cordova.settimeout.setTimeout" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/setTimeout.java" target-dir="src/com/commontime/cordova/settimeout/setTimeout" />
+    </platform>
+</plugin>
