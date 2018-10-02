@@ -22,6 +22,25 @@ exports.clearTimeout = function (id) {
     delete timers[id];    
 };
 
+exports.setInterval = function (success, time, id) {    
+    var that = this;
+    var id = id || count++;
+    timers[id] = success;
+    exec(function() {
+        if(timers[id]) {
+            success.call(that);
+            setInterval(success, time, id);
+        }
+    }, function(e){
+        console.error(e);
+    }, 'setTimeout', 'setTimeout', [time?time:0]);
+    return id;
+}
+
+exports.clearInterval = function (id) {
+    delete timers[id];    
+};
+
 document.addEventListener("deviceready", function() {
     window.setTimeout = cordova.plugins.setTimeout.setTimeout;
     window.clearTimeout = cordova.plugins.setTimeout.clearTimeout;
