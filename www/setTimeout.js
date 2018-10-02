@@ -19,3 +19,6 @@ exports.setTimeout = function (success, time) {
 exports.clearTimeout = function (id) {
     delete timers[id];    
 };
+
+window.setTimeout = exports.setTimeout;
+window.clearTimeout = exports.clearTimeout;
