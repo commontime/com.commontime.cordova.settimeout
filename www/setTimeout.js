@@ -12,7 +12,9 @@ exports.setTimeout = function (success, time) {
             success.call(that);
             delete timers[id];
         }
-    }, function(e){console.error(e);}, 'setTimeout', 'setTimeout', [time]);
+    }, function(e){
+        console.error(e);
+    }, 'setTimeout', 'setTimeout', [time]);
     return id;
 };
 
@@ -20,5 +22,5 @@ exports.clearTimeout = function (id) {
     delete timers[id];    
 };
 
-window.setTimeout = exports.setTimeout;
-window.clearTimeout = exports.clearTimeout;
+// window.setTimeout = exports.setTimeout;
+// window.clearTimeout = exports.clearTimeout;
