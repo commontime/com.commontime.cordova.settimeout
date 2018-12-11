@@ -1,6 +1,6 @@
 {
   "name": "com.commontime.cordova.settimeout",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Commontime cordova insomnia plugin.",
   "cordova": {
     "id": "com.commontime.cordova.settimeout",
