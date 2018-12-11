@@ -43,7 +43,7 @@ exports.clearInterval = function (id) {
 
 document.addEventListener("deviceready", function() {
     if( window.device.platform === "Android" ) {
-        if( window.device.version.split(".")[0] > 6 ) {
+        if( window.device.version.split(".")[0] > 5 ) {
             window.setTimeout = cordova.plugins.setTimeout.setTimeout;
             window.clearTimeout = cordova.plugins.setTimeout.clearTimeout;
             window.setInterval = cordova.plugins.setTimeout.setInterval;
