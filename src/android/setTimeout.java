@@ -1,19 +1,15 @@
-package com.commontime.cordova.settimeout;
+package com.commontime.cordova.settimeout.setTimeout;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.os.SystemClock;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -21,7 +17,7 @@ import java.util.UUID;
 public class setTimeout extends CordovaPlugin {
 
     Timer timer = new Timer();
-    Map<Integer, TimerTask> tasks = new HashMap<Integer, TimerTask>();
+    Map<Integer, TimerTask> tasks = new HashMap<>();
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -54,16 +50,15 @@ public class setTimeout extends CordovaPlugin {
             return true;
         }
         if (action.equals("clearTimeout")) {
-            int timerId = args.getInt(1);
+            int timerId = args.getInt(0);
             tasks.remove(timerId).cancel();
             return true;
         }
         if (action.equals("clearInterval")) {
-            int timerId = args.getInt(1);
+            int timerId = args.getInt(0);
             tasks.remove(timerId).cancel();
             return true;
         }
         return false;
     }
 }
-
