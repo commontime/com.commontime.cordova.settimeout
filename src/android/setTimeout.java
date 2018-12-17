@@ -19,26 +19,29 @@ public class setTimeout extends CordovaPlugin {
 
     Timer timer = new Timer();
     Map<Integer, TimerTask> tasks = new HashMap<Integer, TimerTask>();
+    Map<Integer, CallbackContext> callbacks = new HashMap<Integer, CallbackContext>();
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("setTimeout")) {
-            int time = args.getInt(0);
-            int timerId = args.getInt(1);
+            final int time = args.getInt(0);
+            final int timerId = args.getInt(1);
             TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     callbackContext.success();
+                    tasks.remove(timerId);
                 }
             };
             tasks.put(timerId, timerTask);
+            callbacks.put(timerId, callbackContext);
             timer.schedule(timerTask, time);
 
             return true;
         }
         if (action.equals("setInterval")) {
-            int time = args.getInt(0);
-            int timerId = args.getInt(1);
+            final int time = args.getInt(0);
+            final int timerId = args.getInt(1);
             TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
@@ -50,18 +53,20 @@ public class setTimeout extends CordovaPlugin {
                 }
             };
             tasks.put(timerId, timerTask);
+            callbacks.put(timerId, callbackContext);
             timer.schedule(timerTask, 0, time);
 
             return true;
         }
         if (action.equals("clearTimeout")) {
-            int timerId = args.getInt(0);
+            final int timerId = args.getInt(0);
             tasks.remove(timerId).cancel();
             return true;
         }
         if (action.equals("clearInterval")) {
-            int timerId = args.getInt(0);
+            final int timerId = args.getInt(0);
             tasks.remove(timerId).cancel();
+            callbacks.remove(timerId).sendPluginResult(new PluginResult(PluginResult.Status.NO_RESULT));
             return true;
         }
         return false;
