@@ -1,4 +1,4 @@
-package com.commontime.cordova.settimeout.setTimeout;
+package com.commontime.cordova.settimeout;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
