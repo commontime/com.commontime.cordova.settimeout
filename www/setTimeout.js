@@ -1,6 +1,5 @@
 var exec = require('cordova/exec');
 
-var timers = {};
 var count = 1;
 
 exports.setTimeout = function (success, time) {
@@ -24,20 +23,20 @@ exports.clearTimeout = function (id) {
 exports.setInterval = function (success, time, id) {    
     var that = this;
     var id = id || count++;
-    timers[id] = success;
     exec(function() {
-        if(timers[id]) {
-            success.call(that);
-            setInterval(success, time, id);
-        }
+        success.call(that);
+        setInterval(success, time, id);        
     }, function(e){
         console.error(e);
-    }, 'setTimeout', 'setTimeout', [time?time:0]);
+    }, 'setTimeout', 'setTimeout', [time?time:0, id]);
     return id;
 }
 
 exports.clearInterval = function (id) {
-    delete timers[id];    
+    exec(function() {
+    }, function(e){
+        console.error(e);
+    }, 'setTimeout', 'clearInterval', [id]);    
 };
 
 document.addEventListener("deviceready", function() {
