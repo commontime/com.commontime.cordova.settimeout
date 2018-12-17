@@ -3,6 +3,7 @@ package com.commontime.cordova.settimeout;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -41,7 +42,9 @@ public class setTimeout extends CordovaPlugin {
             TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
-                    callbackContext.success();
+                    PluginResult a = new PluginResult(PluginResult.Status.OK);
+                    a.setKeepCallback(true);
+                    callbackContext.sendPluginResult(a);
                 }
             };
             tasks.put(timerId, timerTask);
