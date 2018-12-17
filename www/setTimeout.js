@@ -15,7 +15,7 @@ exports.setTimeout = function (success, time) {
 };
 
 exports.clearTimeout = function (id) {
-    exec(function() {}
+    exec(function() {
     }, function(e){
         console.error(e);
     }, 'setTimeout', 'clearTimeout', [id]);
