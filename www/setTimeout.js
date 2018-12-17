@@ -6,12 +6,8 @@ var count = 1;
 exports.setTimeout = function (success, time) {
     var that = this;
     var id = count++;
-    timers[id] = success;
     exec(function() {
-        if(timers[id]) {
-            success.call(that);
-            delete timers[id];
-        }
+        success.call(that);
     }, function(e){
         console.error(e);
     }, 'setTimeout', 'setTimeout', [time?time:0]);
@@ -19,7 +15,10 @@ exports.setTimeout = function (success, time) {
 };
 
 exports.clearTimeout = function (id) {
-    delete timers[id];    
+    exec(function() {}
+    }, function(e){
+        console.error(e);
+    }, 'setTimeout', 'clearTimeout', [id]);
 };
 
 exports.setInterval = function (success, time, id) {    
@@ -51,5 +50,3 @@ document.addEventListener("deviceready", function() {
         }
     }
 }, false);
-
-
