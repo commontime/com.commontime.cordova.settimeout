@@ -10,7 +10,7 @@ exports.setTimeout = function (success, time) {
         success.call(that);
     }, function(e){
         console.error(e);
-    }, 'setTimeout', 'setTimeout', [time?time:0]);
+    }, 'setTimeout', 'setTimeout', [time?time:0, id]);
     return id;
 };
 
