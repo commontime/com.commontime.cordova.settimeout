@@ -42,9 +42,11 @@ public class setTimeout extends CordovaPlugin {
             TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
-                    PluginResult a = new PluginResult(PluginResult.Status.OK);
-                    a.setKeepCallback(true);
-                    callbackContext.sendPluginResult(a);
+                    if(tasks.containsKey(timerId)) {
+                        PluginResult a = new PluginResult(PluginResult.Status.OK);
+                        a.setKeepCallback(true);
+                        callbackContext.sendPluginResult(a);
+                    }
                 }
             };
             tasks.put(timerId, timerTask);
