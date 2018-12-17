@@ -24,7 +24,7 @@ public class setTimeout extends CordovaPlugin {
     Map<Integer, TimerTask> tasks = new HashMap<Integer, TimerTask>();
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("setTimeout")) {
             int time = args.getInt(0);
             int timerId = args.getInt(1);
