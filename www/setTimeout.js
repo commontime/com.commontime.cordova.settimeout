@@ -20,12 +20,14 @@ exports.clearTimeout = function (id) {
     }, 'setTimeout', 'clearTimeout', [id]);
 };
 
-exports.setInterval = function (success, time, id) {    
+exports.setInterval = function (success, time, id) {
     var that = this;
     var id = id || count++;
-    exec(function() {
-        success.call(that);
-        setInterval(success, time, id);        
+    exec(function(result) {
+        if(result[0] === "OK") {
+            success.call(that);
+            setInterval(success, time, id);
+        }
     }, function(e){
         console.error(e);
     }, 'setTimeout', 'setTimeout', [time?time:0, id]);
@@ -36,7 +38,7 @@ exports.clearInterval = function (id) {
     exec(function() {
     }, function(e){
         console.error(e);
-    }, 'setTimeout', 'clearInterval', [id]);    
+    }, 'setTimeout', 'clearInterval', [id]);
 };
 
 document.addEventListener("deviceready", function() {
