@@ -6,7 +6,9 @@ exports.setTimeout = function (success, time) {
     var that = this;
     var id = count++;
     exec(function() {
-        success.call(that);
+        if(result[0] === "OK") {
+            success.call(that);
+        }
     }, function(e){
         console.error(e);
     }, 'setTimeout', 'setTimeout', [time?time:0, id]);
@@ -26,7 +28,6 @@ exports.setInterval = function (success, time, id) {
     exec(function(result) {
         if(result[0] === "OK") {
             success.call(that);
-            setInterval(success, time, id);
         }
     }, function(e){
         console.error(e);
