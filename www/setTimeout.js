@@ -5,7 +5,7 @@ var count = 1;
 exports.setTimeout = function (success, time) {
     var that = this;
     var id = count++;
-    exec(function() {
+    exec(function(result) {
         if(result[0] === "OK") {
             success.call(that);
         }
