@@ -31,7 +31,7 @@ exports.setInterval = function (success, time, id) {
         }
     }, function(e){
         console.error(e);
-    }, 'setTimeout', 'setTimeout', [time?time:0, id]);
+    }, 'setTimeout', 'setInterval', [time?time:0, id]);
     return id;
 }
 
