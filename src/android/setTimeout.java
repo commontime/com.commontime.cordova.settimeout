@@ -55,7 +55,7 @@ public class setTimeout extends CordovaPlugin {
             };
             tasks.put(timerId, timerTask);
             callbacks.put(timerId, callbackContext);
-            timer.schedule(timerTask, 0, time);
+            timer.schedule(timerTask, time, time);
 
             return true;
         }
