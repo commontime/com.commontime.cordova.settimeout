@@ -61,6 +61,7 @@ public class setTimeout extends CordovaPlugin {
         if (action.equals("clearTimeout")) {
             final int timerId = args.getInt(0);
             tasks.remove(timerId).cancel();
+            callbacks.remove(timerId).sendPluginResult(new PluginResult(PluginResult.Status.NO_RESULT));
             return true;
         }
         if (action.equals("clearInterval")) {
