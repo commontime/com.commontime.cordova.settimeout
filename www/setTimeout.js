@@ -1,44 +1,45 @@
 var exec = require('cordova/exec');
 
-var timers = {};
 var count = 1;
 
 exports.setTimeout = function (success, time) {
     var that = this;
     var id = count++;
-    timers[id] = success;
-    exec(function() {
-        if(timers[id]) {
+    exec(function(result) {
+        if(result === "OK") {
             success.call(that);
-            delete timers[id];
         }
     }, function(e){
         console.error(e);
-    }, 'setTimeout', 'setTimeout', [time?time:0]);
+    }, 'setTimeout', 'setTimeout', [time?time:0, id]);
     return id;
 };
 
 exports.clearTimeout = function (id) {
-    delete timers[id];    
+    exec(function() {
+    }, function(e){
+        console.error(e);
+    }, 'setTimeout', 'clearTimeout', [id]);
 };
 
-exports.setInterval = function (success, time, id) {    
+exports.setInterval = function (success, time, id) {
     var that = this;
     var id = id || count++;
-    timers[id] = success;
-    exec(function() {
-        if(timers[id]) {
+    exec(function(result) {
+        if(result === "OK") {
             success.call(that);
-            setInterval(success, time, id);
         }
     }, function(e){
         console.error(e);
-    }, 'setTimeout', 'setTimeout', [time?time:0]);
+    }, 'setTimeout', 'setInterval', [time?time:0, id]);
     return id;
 }
 
 exports.clearInterval = function (id) {
-    delete timers[id];    
+    exec(function() {
+    }, function(e){
+        console.error(e);
+    }, 'setTimeout', 'clearInterval', [id]);
 };
 
 document.addEventListener("deviceready", function() {
@@ -51,5 +52,3 @@ document.addEventListener("deviceready", function() {
         }
     }
 }, false);
-
-
