@@ -16,10 +16,12 @@ exports.setTimeout = function (success, time) {
 };
 
 exports.clearTimeout = function (id) {
-    exec(function() {
-    }, function(e){
-        console.error(e);
-    }, 'setTimeout', 'clearTimeout', [id]);
+    if(id) {
+        exec(function() {
+        }, function(e){
+            console.error(e);
+        }, 'setTimeout', 'clearTimeout', [id]);
+    }
 };
 
 exports.setInterval = function (success, time, id) {
@@ -36,10 +38,12 @@ exports.setInterval = function (success, time, id) {
 }
 
 exports.clearInterval = function (id) {
-    exec(function() {
-    }, function(e){
-        console.error(e);
-    }, 'setTimeout', 'clearInterval', [id]);
+    if(id) {
+        exec(function() {
+        }, function(e){
+            console.error(e);
+        }, 'setTimeout', 'clearInterval', [id]);
+    }
 };
 
 document.addEventListener("deviceready", function() {
